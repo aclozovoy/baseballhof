@@ -41,3 +41,6 @@ for year in range(start_year,end_year+1):
         df.loc[len(df)] = valuelist
 
 print(df)
+
+# OUTPUT TO CSV
+df.to_csv('HOF_voting.csv',sep='|')
