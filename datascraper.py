@@ -3,8 +3,6 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-# Create empty dataframe
-df = pd.DataFrame()
 
 # Pull html from web
 year = 2022
@@ -17,22 +15,22 @@ table = soup.body.table.tbody
 
 # Scrap stats from table
 # Each row is one player for one year of voting
+flag = False
 for player in table.find_all('tr'):
     valuelist = [year]
     fieldlist = ['year']
     for stat in player.find_all('td'):
         value = stat.get_text()
         field = stat.get('data-stat')
-        # print(value)
-        # print(field)
         valuelist.append(value)
         fieldlist.append(field)
-        # print(valuelist)
 
-    print(valuelist)
-    print(fieldlist)
-    print(len(valuelist))
-    print(len(fieldlist))
-    df_row = pd.DataFrame(columns = [fieldlist])
-    df_row.loc[len(df_row)] = valuelist
-    print(df_row)
+    # Flag to only create dataframe once
+    if flag == False:
+        df = pd.DataFrame(columns = [fieldlist])
+        flag = True
+    
+    # Add player row to dataframe
+    df.loc[len(df)] = valuelist
+
+print(df)
