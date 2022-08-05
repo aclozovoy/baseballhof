@@ -18,19 +18,21 @@ table = soup.body.table.tbody
 # Scrap stats from table
 # Each row is one player for one year of voting
 for player in table.find_all('tr'):
-    valuelist = np.array([year])
-    fieldlist = np.array('year')
+    valuelist = [year]
+    fieldlist = ['year']
     for stat in player.find_all('td'):
         value = stat.get_text()
         field = stat.get('data-stat')
         # print(value)
         # print(field)
-        valuelist = np.append(valuelist, value)
-        fieldlist = np.append(fieldlist, field)
+        valuelist.append(value)
+        fieldlist.append(field)
         # print(valuelist)
 
     print(valuelist)
     print(fieldlist)
     print(len(valuelist))
     print(len(fieldlist))
-    # df_row = pd.DataFrame(valuelist, columns = fieldlist)
+    df_row = pd.DataFrame(columns = [fieldlist])
+    df_row.loc[len(df_row)] = valuelist
+    print(df_row)
