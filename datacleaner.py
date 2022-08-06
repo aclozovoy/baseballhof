@@ -4,6 +4,9 @@ import pandas as pd
 # IMPORT DATA
 df = pd.read_csv('HOF_voting.csv',sep='|')
 
+# Drop second index
+df = df.drop(columns = 'Unnamed: 0')
+
 # Duplicate player names with tags
 df['player_old'] = df['player']
 
