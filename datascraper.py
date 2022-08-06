@@ -7,13 +7,15 @@ from bs4 import BeautifulSoup
 flag = False
 
 # Loop over years
-# no voting in 1961, 1963, 1965
-start_year = 1966
+start_year = 1936
 end_year = 2022
-for year in range(start_year,end_year+1):
+full_years = range(start_year,end_year+1) # All years since HOF voting started
+omit_years = [1940, 1941, 1943, 1944, 1957, 1959, 1961, 1963, 1965] # Years without HOF voting
+year_list = [x for x in full_years if x not in omit_years] # All years with HOF voting
+
+for year in year_list:
 
     # Pull html from web
-    # year = 2022
     url = 'https://www.baseball-reference.com/awards/hof_'+str(year)+'.shtml'
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
