@@ -56,8 +56,6 @@ df_year = df[['year', 'player', 'year_on_ballot', 'year_on_ballot_int', 'votes',
 
 # OUTPUT TO CSV
 df_year.to_csv('HOF_voting_year.csv',sep='|')
-print(df_year)
-print(list(df_year))
 
 
 # CREATE CAREER TABLE WITH ONLY ONE ROW PER PLAYER
@@ -71,5 +69,3 @@ df_career = df_career.drop(['index', 'year', 'year_on_ballot', 'year_on_ballot_i
 
 # OUTPUT TO CSV
 df_career.to_csv('HOF_voting_career.csv',sep='|')
-print(df_career)
-print(list(df_career))
