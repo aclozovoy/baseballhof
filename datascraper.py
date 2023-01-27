@@ -8,7 +8,7 @@ flag = False
 
 # Loop over years
 start_year = 1936
-end_year = 2022
+end_year = 2023
 full_years = range(start_year,end_year+1) # All years since HOF voting started
 omit_years = [1940, 1941, 1943, 1944, 1957, 1959, 1961, 1963, 1965] # Years without HOF voting
 year_list = [x for x in full_years if x not in omit_years] # All years with HOF voting
